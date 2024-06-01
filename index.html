@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumia Gain Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Jumia Gain Calculator</h1>
+    <p>Enter the information below to calculate your gain:</p>
+    <form id="gainCalculatorForm">
+        <div class="form-group">
+            <label for="sp">Selling Price:</label>
+            <input type="number" id="sp" name="sp" required>
+        </div>
+        <div class="form-group">
+            <label for="com_rate">Commission Rate (%):</label>
+            <input type="number" id="com_rate" name="com_rate" required>
+        </div>
+        <div class="form-group">
+            <label for="transportn">Transportation Cost:</label>
+            <input type="number" id="transportn" name="transportn" required>
+        </div>
+        <div class="form-group">
+            <label for="labour">Labour Cost:</label>
+            <input type="number" id="labour" name="labour" required>
+        </div>
+        <div class="form-group">
+            <label for="cp">Cost Price:</label>
+            <input type="number" id="cp" name="cp" required>
+        </div>
+        <div class="form-group">
+            <label for="packaging_material">Packaging Material Cost:</label>
+            <input type="number" id="packaging_material" name="packaging_material" required>
+        </div>
+        <div class="form-group">
+            <label for="shipping_cost">Shipping Cost:</label>
+            <input type="number" id="shipping_cost" name="shipping_cost" required>
+        </div>
+        <button type="button" onclick="calculateGain()">Calculate Gain</button>
+    </form>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateGain() {
+        const sp = parseFloat(document.getElementById('sp').value);
+        const com_rate = parseFloat(document.getElementById('com_rate').value);
+        const transportn = parseFloat(document.getElementById('transportn').value);
+        const labour = parseFloat(document.getElementById('labour').value);
+        const cp = parseFloat(document.getElementById('cp').value);
+        const packaging_material = parseFloat(document.getElementById('packaging_material').value);
+        const shipping_cost = parseFloat(document.getElementById('shipping_cost').value);
+
+        const total_com = sp * com_rate / 100;
+        const total_cost = total_com + transportn + labour + cp + packaging_material + shipping_cost;
+        const gain = sp - total_cost;
+
+        document.getElementById('result').innerText = `Your gain is ${gain.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
